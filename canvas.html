@@ -1,11 +1,46 @@
+<!-- 
+Reo Kimura
+SoftDev2 pd8
+HW5 -- ___
+2017-02-14
+  -->
+
 <!DOCTYPE html>
 
 <html>
-<body>
-  <h1>Canvas Demo</h1>
-  <canvas height="500" width="500" id="slate">
-  </canvas>
-  <button id="clearB">clear</button>
-  <script src="canvas.js"></script>
-<body>
+  <head>
+    <title>Reo's Canvas Demo</title>
+  </head>
+
+  <body>
+    <h1>Canvas Demo!</h1>
+    <canvas height="500" width="500" id="slate" style="border:2px solid #d35400;">
+    </canvas>
+    <br><br>
+    <button id="clearB">clear</button>
+    <script>
+      var b = document.getElementById("clearB");
+      var c = document.getElementById("slate");
+      var colors = ["#d35400", "#3498db", "#f1c40f", "#8e44ad", "#c0392b", "#95a5a6", "#1abc9c", "#e74c3c"];
+
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "#d35400";
+      ctx.fillRect(50,50,100,200);
+
+      var clearCanvas = function(e){
+      ctx.clearRect(0,0,c.width,c.height);
+      }
+      var drawRect = function(e){
+      var x = e.offsetX, y = e.offsetY;
+      var rectWidth = (Math.random() * 50) + 10, rectHeight = (Math.random() * 50) + 10;
+      var randPos = Math.round(Math.random() * colors.length);
+      ctx.fillStyle = colors[randPos];
+      ctx.fillRect(x, y, x + rectWidth, y - rectHeight);
+      }
+      
+      c.addEventListener("click", drawRect);
+      b.addEventListener("click", clearCanvas);
+    </script>
+  <body>
+
 </html>
