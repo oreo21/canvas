@@ -34,7 +34,7 @@ var anime = function() {
     var xcor = c.width / 2;
     var ycor = c.height / 2;
     var growing = true;
-    var shrinking = false;
+    
     
     //Q: what happens w/ & w/o next line?
     //window.cancelAnimationFrame( requestID );
@@ -43,28 +43,19 @@ var anime = function() {
 	console.log( requestID );
 	
 	ctx.clearRect( 0, 0, c.width, c.height );
-	if (growing == true){
-	    ctx.beginPath();
-	    ctx.arc( xcor, ycor, radius, 0, 2 * Math.PI );
-	    ctx.stroke();
-	    ctx.fill();
-	    radius++;
-        }
-	else {
-	    ctx.beginPath();
-	    ctx.arc(xcor, ycor, radius, 0, 2 * Math.PI);
-	    ctx.stroke();
-	    ctx.fill();
-	    radius--;
-	}
-	if (xcor + radius == c.width || ycor + radius = c.height)
-	    shrinking = true, growing = false;
-	if (xcor == 0 && ycor == 0)
-	    shrinking = false, growing = true;
-
+	ctx.beginPath();
+	ctx.arc( xcor, ycor, radius, 0, 2 * Math.PI );
+	ctx.stroke();
+	ctx.fill();
+	if (growing == true) radius++;
+	if (growing == false) radius--;
 	requestID = window.requestAnimationFrame( drawDot );
     };
     drawDot();
+    if ((radius == (c.width / 2)) || (radius == (c.height / 2)))
+	growing = false;
+    if (radius == 0)
+	growing = true;
 };
 
 var stopIt = function() {
