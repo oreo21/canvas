@@ -20,7 +20,7 @@
 
       var drawNode = function(e){
 	  var x = e.offsetX, y = e.offsetY;
-	  var pos = Math.round(Math.random() * colors.length;
+	  var pos = Math.round(Math.random() * colors.length);
 	  ctx.fillStyle = colors[pos];
 	  ctx.beginPath();
 	  ctx.arc(x, y, 5, 0, Math.PI * 2);
@@ -28,7 +28,5 @@
 	  ctx.fill();
       }
 
-
-      d.innerHTML = drawNode();
       c.addEventListener("click", drawNode);
       b.addEventListener("click", clearCanvas);
